@@ -1,9 +1,5 @@
 {
     "teams": [],
     "ops": [],
-    "strikes": {},
-    "config": {
-        "serverCurfew": true,
-        "whenDisabled": "12-20"
-    }
+    "strikes": {}
 }

@@ -1,3 +1,3 @@
 # TechnoSMP
 
-Files for TechnoSMP. TechnoDOt is awesome.
+Files for TechnoSMP. TechnoDot is awesome.
