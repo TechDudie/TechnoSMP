@@ -1,11 +1,28 @@
 from nextcord import Interaction, Embed, Color
 from datetime import datetime
 
-def log(message="", source="Main", level="INFO"):
-    print(f"[{source}] [{datetime.utcnow().strftime('%Y-%m-%d %H:%M:%S.%f')[11:-3]}] [{level}] {message}")
+source_aliases = {
+    "M": "MasterThread",
+    "J": "JSONManager",
+    "S": "ServerHandler",
+    "D": "DiscordWorker",
+    "W": "WebsiteThread"
+}
+
+def log(message="", level="INFO"):
+    try:
+        source = source_aliases[message.split("/")[0]]
+    except KeyError:
+        source = "UnknownSource"
+    print(f"[{source}] [{datetime.utcnow().strftime('%Y-%m-%d %H:%M:%S.%f')[11:-3]}] [{level}] {message[2:]}")
+
+def error(message="", fatal=True):
+    log(message, level="ERROR")
+    if fatal:
+        exit()
 
 def user_log(interaction: Interaction, message="", level="INFO"):
-    log(f"[{interaction.user.id}] [{level}] {message}", "Discord", "USER")
+    log(f"D/[{interaction.user.id}] [{level}] {message}", "USER")
 
 async def embed(interaction: Interaction, message="", level="INFO", header=""):
     color = Color.default()
